@@ -1,0 +1,27 @@
+.book-main{
+    width: 15vw;
+    height: 35vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 30%;
+    margin-top: 10%;
+    border-radius: 1px;
+    opacity: 1;
+}
+.book-img{
+    margin-top: 15%;
+    border-radius: 1px;
+    opacity: 1;
+}
+.book-details{
+    margin-top: -10%;
+    align-items: center;
+   
+}
+.book-rating{
+    margin-top: -10%;
+}
+.book-rate{
+    margin-top: -10%;
+}
