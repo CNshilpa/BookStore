@@ -1,0 +1,27 @@
+.bookdetails-main{
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #E2E2E2;
+    border-radius: 3px;
+    opacity: 1;
+  margin-left: 10%;
+  margin-top: 4%;
+}
+.bookdetails-submain{
+    width: 25%;
+    height: 50%; 
+    border: 1px solid #E2E2E2;
+}
+.bookdetails-img{
+    width: 80%;
+    height: 90%;
+    margin-top: 5%;
+}
+.bookdetails-details{
+    margin-top: 10%;
+    flex-direction: row;
+    justify-content:space-between;
+    gap: 20px;
+}

@@ -6,6 +6,7 @@ import SignUp from './components/signup/SignUp';
 import PrimarySearchAppBar from './components/header/Header';
 import Book from './pages/books/Book';
 import HomePage from './pages/home/HomePage';
+import BookDetails from './pages/bookdetails/BookDetails';
 
 
 
@@ -14,11 +15,12 @@ function App() {
   return (
     <div className="App">
  {/* <SignIn/>  */}
-{/* <Lander/>    */}
+{/* <Lander/>      */}
 {/* <SignUp/> */}
-{/* <PrimarySearchAppBar/> */}
-{/* <Book/> */}
-<HomePage/>
+{/* <PrimarySearchAppBar/>   */}
+  {/* <Book/>   */}
+  <HomePage/>   
+  {/* <BookDetails/> */}
     </div>
   );
 }

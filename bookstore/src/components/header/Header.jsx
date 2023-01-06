@@ -127,7 +127,7 @@ export default function PrimarySearchAppBar() {
           color="inherit"
           sx={{ml:7 }}
         >
-          <PersonOutlineIcon />
+          <PersonOutlineIcon  />
         </IconButton>
         <p>Profile</p>
       </MenuItem>

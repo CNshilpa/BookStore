@@ -9,15 +9,15 @@ import { registerApi } from '../../services/UserService';
 
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
-const nameRegex =  /^[A-Z]{1}[a-z]{2,}$/;
-const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+const fullNameRegex =  /^([A-Z]{1}[a-z,A-Z]{2,})$/;
+const phoneRegex = /^([6-9]{1}[0-9]{9})$/;
 
 function SignUp(props) {
 
-    const [signUpObj,setsignUpObj] = React.useState({Name : "",email : "",password : "",phone :"" })
+    const [signUpObj,setsignUpObj] = React.useState({fullName : "",email : "",password : "",phone :""})
 
     const [regexObj,setregexObj] = React.useState({
-        NameBorder : false, NameHelper : "",emailBorder : false , emailHelper : "",passwordBorder : false ,passwordHelper : "",  
+        fullNameBorder : false, fullNameHelper : "",emailBorder : false , emailHelper : "",passwordBorder : false ,passwordHelper : "",  
         phoneBorder : false, phoneHelper : ""    
       })
   
@@ -33,11 +33,11 @@ function SignUp(props) {
     }
     const takeName = (event) =>
     {
-        setsignUpObj((prevState) =>({...prevState,Name : event.target.value}))    
+        setsignUpObj((prevState) =>({...prevState,fullName : event.target.value}))    
     }
     const takePhone = (event) =>
     {
-        setsignUpObj((prevState) =>({...prevState,password : event.target.value}))    
+        setsignUpObj((prevState) =>({...prevState,phone : event.target.value}))    
     }
   
     const submitObj = () => {
@@ -50,17 +50,17 @@ function SignUp(props) {
     }
 const signUp = () =>{
     console.log("submit",signUpObj)
-      let NameText = nameRegex.test(signUpObj.Name)
+      let NameText = fullNameRegex.test(signUpObj.fullName)
       let emailText = emailRegex.test(signUpObj.email)
       let passwordText = passwordRegex.test(signUpObj.password)
       let phoneText = phoneRegex.test(signUpObj.phone)
       if(NameText === false)
       {
-          setregexObj((prevState) => ({...prevState,NameBorder : true,NameHelper :"Enter correct Name"}))
+          setregexObj((prevState) => ({...prevState,fullNameBorder : true,fullNameHelper :"Enter correct Name"}))
       }
       else if(NameText === true)
       {
-          setregexObj((prevState) => ({...prevState,NameBorder : false,NameHelper :""}))
+          setregexObj((prevState) => ({...prevState,fullNameBorder : false,fullNameHelper :""}))
       }
       if(emailText === false)
       {
@@ -104,7 +104,7 @@ const signUp = () =>{
                     <Box className='full-name'>
                         <span className='signup-name'>Full Name</span>
                         <TextField id="name" size='small' variant="outlined" sx={{ width: '100%', borderRadius: '2px', height: '30px', marginTop: '-10px' }} 
-                        onChange={takeName} error={regexObj.NameBorder} helperText={regexObj.NameHelper}
+                        onChange={takeName} error={regexObj.fullNameBorder} helperText={regexObj.fullNameHelper}
                         />
                     </Box>
                     <Box className='signup-email'>

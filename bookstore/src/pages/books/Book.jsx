@@ -1,22 +1,29 @@
 import { Box, Paper } from '@mui/material'
 import React from 'react'
-import bookObj from '../../img/component (1).png';
+import bookObj1 from '../../img/component (1).png';
 import './Book.css';
-import Rating from '@mui/material/Rating';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
 
-function Book() {
+
+function Book(props) {
+    
+
     return (
-        <Paper className='book-main' elevation={4}>
-            <Box>
-                <Box className='book-img'>
-                    <img src={bookObj} alt='' />
+        <Paper  elevation={1}  >
+            <Box className='book1'>
+               
+                <Box >
+                <img src={bookObj1} alt='' />  
                 </Box>
-                <Box className='book-details'>
-                    <p><h6>Don't Make Me Think</h6></p>
-                    <Box className='book-rating'><Rating name="size-small" defaultValue={4.3} size="small" /></Box>
-                    <p className='book-rate'><h6>Rs.1500</h6></p>
-                </Box>
+                <Box style={{alignItems:'flex-start',display:'flex', alignContent:'flex-start',flexWrap:'wrap',marginTop:'130px'}}>
+                    <h5 className='book-name'>{props.book.bookName}</h5>
+                    <h6 className='book-author'>By {props.book.author}</h6>
+                    <Box style={{width:'40px', height:'20px', backgroundColor:'green', alignItems:'center',marginLeft:'25px',marginTop:'-70px'}}><StarOutlineIcon size="small" style={{marginLeft:'15px',marginTop:'-1px',color:'white',size:'small'}}/><h6 style={{marginTop:'-25px',marginLeft:'-20px',color:'white'}}>4.5</h6></Box>
+                    <h6 className='book-rate'>Rs.{props.book.price}</h6>
+                    </Box>
+                   
             </Box>
+            
         </Paper>
     )
 }
