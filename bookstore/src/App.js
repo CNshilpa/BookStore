@@ -7,6 +7,8 @@ import PrimarySearchAppBar from './components/header/Header';
 import Book from './pages/books/Book';
 import HomePage from './pages/home/HomePage';
 import BookDetails from './pages/bookdetails/BookDetails';
+import Counter from './components/counter/Counter';
+import { Router } from 'react-router-dom';
 
 
 
@@ -21,6 +23,8 @@ function App() {
   {/* <Book/>   */}
   <HomePage/>   
   {/* <BookDetails/> */}
+  {/* <Counter/> */}
+  {/* <Router/> */}
     </div>
   );
 }

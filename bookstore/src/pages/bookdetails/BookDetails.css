@@ -1,27 +1,92 @@
-.bookdetails-main{
+.bookdetails-main {
     width: 80vw;
-    height: 80vh;
+    height: 70vh;
     display: flex;
     background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 1px solid #E2E2E2;
     border-radius: 3px;
     opacity: 1;
-  margin-left: 10%;
-  margin-top: 4%;
+    margin-left: -5%;
+    margin-top: 1%;
 }
-.bookdetails-submain{
+
+.bookdetails-submain {
     width: 25%;
-    height: 50%; 
+    height: 60%;
     border: 1px solid #E2E2E2;
 }
-.bookdetails-img{
+
+.bookdetails-img {
     width: 80%;
     height: 90%;
     margin-top: 5%;
 }
-.bookdetails-details{
+
+.bookdetails-details {
     margin-top: 10%;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content: space-between;
     gap: 20px;
+}
+
+.bookdetails-rates {
+    width: 18px;
+    height: 13px;
+    text-align: left;
+    font: normal normal normal 10px/13px Roboto;
+    letter-spacing: 0px;
+    color: #878787;
+    opacity: 1;
+    margin-left: 110%;
+    margin-top: -95%;
+}
+
+.bookdetails-rate {
+    margin-top: 8%;
+    margin-left: -40%;
+    font: normal normal normal 20px/13px Roboto;
+}
+
+.bookdetails-price {
+    width: 36px;
+    height: 13px;
+    text-align: left;
+    text-decoration: line-through;
+    font: normal normal normal 15px/13px Roboto;
+    letter-spacing: 0px;
+    color: #878787;
+    opacity: 1;
+    margin-left: 65%;
+    margin-top: -5%;
+}
+
+.bookdetails-typography {
+    width: 350%;
+    height: 25%;
+    margin-top: -15%;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #E2E2E2;
+    border-radius: 3px;
+    margin-left: 15%;
+    overflow-y: scroll;
+}
+
+.book1-img {
+    top: 132px;
+    left: 179px;
+    width: 35px;
+    height: 45px;
+    background: transparent url('../../img/component (2).png') 0% 0% no-repeat padding-box;
+    opacity: 1;
+    border: 1px solid #7C1E1E;
+    border-radius: 0px 1px 1px 1px;
+}
+
+.book2-img {
+    top: 181px;
+    left: 174px;
+    width: 44px;
+    height: 54px;
+    border: 1px solid #D1D1D1;
+    border-radius: 0px 1px 1px 1px;
+    opacity: 1;
 }

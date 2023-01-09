@@ -11,27 +11,43 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Book from '../books/Book';
 import { getBookApi } from '../../services/DataService';
+import BookDetails from '../bookdetails/BookDetails';
 
 function HomePage(props) {
     const [headerToggle, setHeaderToggle] = useState(false)
     const [open, setOpen] = React.useState(false);
     const [bookList, setBookList] = useState([])
+    const [bookObjToggle, setBookObjToggle] = useState(false)
+   
+    const listenToTakeBook = () =>
+    {
+        setBookObjToggle(true)
+    }
+
+    const listenToTakeBookDetails = () => {
+        setBookObjToggle(false)
+    }
+
     const handleClick = () => {
         setOpen(!open);
     }
     const listenToHeader = () => {
         setHeaderToggle(!headerToggle)
     }
+    
+    const getBook = () =>{
+        getBookApi()
+        .then(response => {
+            console.log(response)
+            setBookList(response.data.result)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
 
     useEffect(() => {
-        getBookApi()
-            .then(response => {
-                console.log(response)
-                setBookList(response.data.result)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        getBook()
 
     }, [])
     console.log(bookList, 'fetching array')
@@ -41,6 +57,7 @@ function HomePage(props) {
 
         <div>
             <PrimarySearchAppBar listenToHeader={listenToHeader} />
+          
             <span><h3 className='home-books'>Books</h3></span>
             <List
                 sx={{ width: '80%', maxWidth: 250, bgcolor: 'background.paper', marginLeft: '990px', marginTop: '-55px' }}
@@ -72,9 +89,10 @@ function HomePage(props) {
             
             <div style={{width : '80vw' , height : 'auto' ,display : 'flex', flexDirection:'row',flexWrap:'wrap',marginLeft:'210px',gap: '15px 20px',marginTop:'15px'}}>
                 {
-                    bookList.map((book) => (<Book book={book} />))
-                   
+                 bookObjToggle ?   <BookDetails listenToTakeBookDetails ={listenToTakeBookDetails}/> :  bookList.map((book) => (<Book  book={book} getBook={getBook} listenToTakeBook={listenToTakeBook} />))
+                    
                 }
+               
                  
             </div>
            
