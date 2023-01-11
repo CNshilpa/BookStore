@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const headerConfig = {
     headers : {
-        Authorization : localStorage.getItem("token")
+       'x-access-token' : localStorage.getItem("token")
 
     }
 }
@@ -14,16 +14,16 @@ export const getBookApi = () =>
 }
 export const addToCartApi = (data) =>
 {
-    let response = axios.post('https://bookstore.incubation.bridgelabz.com/bookstore_user/add_cart_item/{product_id}',data,headerConfig)
+    let response = axios.post(`https://bookstore.incubation.bridgelabz.com/bookstore_user/add_cart_item/${data.product_id}`,data,headerConfig)
     return response
 }
-export const cartItemApi = (data) =>
+export const cartItemListApi = () =>
 {
-    let response = axios.put('https://bookstore.incubation.bridgelabz.com/bookstore_user/cart_item_quantity/{cartItem_id}',data,headerConfig)
+    let response = axios.get('https://bookstore.incubation.bridgelabz.com/bookstore_user/get_cart_items', headerConfig)
     return response
 }
 export const addToWishlistApi = (data) =>
 {
-    let response = axios.post('https://bookstore.incubation.bridgelabz.com/bookstore_user/add_wish_list/{product_id}',data,headerConfig)
+    let response = axios.post(`https://bookstore.incubation.bridgelabz.com/bookstore_user/add_wish_list/${data.product_id}`,data,headerConfig)
     return response
 }

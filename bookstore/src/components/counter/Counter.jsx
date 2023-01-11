@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import React, {useState} from 'react'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { Button } from '@mui/material';
+import './Counter.css';
 
-function Counter(props) {
+function Counter() {
     const [counter, setCounter] = useState(1)
 
       const handleClick2 = () => {
@@ -14,14 +15,12 @@ function Counter(props) {
       const handleClick1 = () => {
         setCounter(counter + 1)
       }
-      const submit = () =>{
-        props.listenToBookCount()
-      }
+      
       
   return (
     <div>
        
-        <Button onClick={submit}><ControlPointIcon onClick={handleClick1}/> {counter} <RemoveCircleOutlineIcon  onClick={handleClick2}/></Button>
+        <Button ><RemoveCircleOutlineIcon  onClick={handleClick2}/> {counter} <AddCircleOutlineIcon onClick={handleClick1}/></Button>
     </div>
   )
 }

@@ -1,0 +1,20 @@
+.box {
+    height: 22px;
+    width: 38px;
+    display: flex;
+    border: 1px solid gray;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    right: 20px;
+}
+
+.decrement {
+    position: relative;
+    left: 0px;
+}
+
+.increment {
+    position: relative;
+    right: 40px;
+}

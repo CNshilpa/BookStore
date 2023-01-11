@@ -16,7 +16,7 @@ import { Router } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
- {/* <SignIn/>  */}
+ {/* <SignIn/>   */}
 {/* <Lander/>      */}
 {/* <SignUp/> */}
 {/* <PrimarySearchAppBar/>   */}

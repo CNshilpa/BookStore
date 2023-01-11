@@ -12,18 +12,22 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import Book from '../books/Book';
 import { getBookApi } from '../../services/DataService';
 import BookDetails from '../bookdetails/BookDetails';
+import { Box } from '@mui/material';
 
-function HomePage(props) {
+
+function HomePage() {
     const [headerToggle, setHeaderToggle] = useState(false)
     const [open, setOpen] = React.useState(false);
     const [bookList, setBookList] = useState([])
     const [bookObjToggle, setBookObjToggle] = useState(false)
-   
-    const listenToTakeBook = () =>
-    {
-        setBookObjToggle(true)
-    }
+    const [input, setInput] = useState({})
 
+    const listenToTakeBook = (detailsObj) => {
+        setBookObjToggle(true)
+        console.log(detailsObj)
+        setInput(detailsObj)
+        console.log(input.bookName, "particular book details")
+    }
     const listenToTakeBookDetails = () => {
         setBookObjToggle(false)
     }
@@ -34,20 +38,16 @@ function HomePage(props) {
     const listenToHeader = () => {
         setHeaderToggle(!headerToggle)
     }
-    
-    const getBook = () =>{
+
+    useEffect(() => {
         getBookApi()
-        .then(response => {
-            console.log(response)
-            setBookList(response.data.result)
+        .then(res => {
+            console.log(res)
+            setBookList(res.data.result)
         })
         .catch(error => {
             console.log(error)
         })
-    }
-
-    useEffect(() => {
-        getBook()
 
     }, [])
     console.log(bookList, 'fetching array')
@@ -57,7 +57,7 @@ function HomePage(props) {
 
         <div>
             <PrimarySearchAppBar listenToHeader={listenToHeader} />
-          
+
             <span><h3 className='home-books'>Books</h3></span>
             <List
                 sx={{ width: '80%', maxWidth: 250, bgcolor: 'background.paper', marginLeft: '990px', marginTop: '-55px' }}
@@ -86,16 +86,16 @@ function HomePage(props) {
                     </List>
                 </Collapse>
             </List>
-            
-            <div style={{width : '80vw' , height : 'auto' ,display : 'flex', flexDirection:'row',flexWrap:'wrap',marginLeft:'210px',gap: '15px 20px',marginTop:'15px'}}>
+
+            <div style={{ width: '80vw', height: 'auto', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginLeft: '210px', gap: '15px 20px', marginTop: '15px' }}>
                 {
-                 bookObjToggle ?   <BookDetails listenToTakeBookDetails ={listenToTakeBookDetails}/> :  bookList.map((book) => (<Book  book={book} getBook={getBook} listenToTakeBook={listenToTakeBook} />))
-                    
+                    bookObjToggle ? <BookDetails listenToTakeBookDetails={listenToTakeBookDetails} id={input._id} bookName={input.bookName} author={input.author} quantity={input.quantity} discountPrice={input.discountPrice} price={input.price} description={input.description} /> : bookList.map((book) => (<Box onClick={() => listenToTakeBook(book)}><Book key={book._id} book={book}/></Box>))
+
                 }
-               
-                 
+                
+
             </div>
-           
+
         </div>
     )
 }
