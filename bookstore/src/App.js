@@ -9,6 +9,7 @@ import HomePage from './pages/home/HomePage';
 import BookDetails from './pages/bookdetails/BookDetails';
 import Counter from './components/counter/Counter';
 import { Router } from 'react-router-dom';
+import MyCart from './components/mycart/MyCart';
 
 
 
@@ -21,10 +22,11 @@ function App() {
 {/* <SignUp/> */}
 {/* <PrimarySearchAppBar/>   */}
   {/* <Book/>   */}
-  <HomePage/>   
+ <HomePage/>    
   {/* <BookDetails/> */}
   {/* <Counter/> */}
   {/* <Router/> */}
+  {/* <MyCart/> */}
     </div>
   );
 }

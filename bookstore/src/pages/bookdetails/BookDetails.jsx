@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import book1 from '../../img/component (2).png'
 import book2 from '../../img/component (10).png'
 import './BookDetails.css';
@@ -7,14 +7,16 @@ import { Box } from '@mui/material';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
-import { addToCartApi, addToWishlistApi, cartItemListApi } from '../../services/DataService';
-import Counter from '../../components/counter/Counter';
+import { addToCartApi, addToWishlistApi, UpdateCartApi} from '../../services/DataService';
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
+import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
 function BookDetails(props) {
     const [wishListToggle, setWishListToggle] = useState(false)
     const [cartToggle, setCartToggle] = useState(false)
+    const [count, setCount] = useState(1);
 
     const addCart = () => {
         setCartToggle(true)
@@ -44,19 +46,40 @@ function BookDetails(props) {
                 console.log(error)
             })
     }
-    useEffect(() => {
-        cartItemListApi()
-            .then((res) => {
-                console.log(res)
-                res.data.result.filter((item) => {
-                    if (item._id === props.id) {
-                        setCartToggle(res.data.result)
-                        return item
-                    }
-                })
-                setCartToggle(res.data.result)
-            })
-    }, [props.id])
+    const decrement = () => {
+        let input = {
+            quantityToBuy: count - 1,
+        }
+        if (count > 1) {
+            setCount(count - 1);
+        } else {
+            setCount(1);
+        }
+        UpdateCartApi(props.id, input).then((response) => {
+            console.log(response);
+
+        }).catch((error) => {
+            console.log(error);
+        })
+        console.log(input)
+    }
+    const increment = () => {
+
+        let input = {
+            quantityToBuy: count + 1,
+        }
+        setCount(count + 1);
+        UpdateCartApi(props.id, input).then((response) => {
+            console.log(response);
+
+        }).catch((error) => {
+            console.log(error);
+        })
+        console.log(input)
+    }
+    
+
+  
 
 
     return (
@@ -71,8 +94,19 @@ function BookDetails(props) {
                 <img src={book1} alt='' className='bookdetails-img' />
                 <div className='bookdetails-details' >
                     {
-                        cartToggle ? <Counter />
-                            :
+                        cartToggle ?(
+                            <Box>
+                            <Box style={{}}>
+                                <Box onClick={decrement} style={{marginLeft:'-90px',marginTop:'10px'}}>
+                                    <RemoveCircleOutlinedIcon />
+                                </Box>
+                                <p style={{marginTop:'-25px',marginLeft:'-50px'}}>{count}</p>
+                                <Box onClick={increment} style={{marginTop:'-40px',marginLeft:'-10px'}} >
+                                    <AddCircleOutlinedIcon/>
+                                </Box>
+                            </Box>
+                        </Box>
+                        ) :
                             <Button variant="contained" style={{ backgroundColor: '#8F2B2F', marginRight: '30px' }} onClick={addCart}>ADD TO CART</Button>
                     }
                 </div>
