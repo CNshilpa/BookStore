@@ -1,5 +1,7 @@
 import React from 'react'
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
+import MyCart from '../../components/mycart/MyCart'
+import OrderPlaced from '../../components/orderplaced/OrderPlaced'
 import SignIn from '../../components/signin/signin'
 import SignUp from '../../components/signup/SignUp'
 import BookDetails from '../bookdetails/BookDetails'
@@ -12,10 +14,9 @@ function Routers() {
         <Router>
             <Routes>
                 <Route exact path='/' element={<Lander/>}/>
-                <Route path='/signin' element={<SignIn/>}/> 
-                <Route path='/signup' element={<SignUp/>}/> 
                 <Route path='/homePage' element={<HomePage/>}/> 
-                <Route path='/bookDetails' element={<BookDetails/>}/>  
+                <Route path='/myCart' element={<MyCart/>}/>  
+                <Route path='/orderPlaced' element={<OrderPlaced/>}/> 
             </Routes>
         </Router>
     </div>

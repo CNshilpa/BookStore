@@ -10,6 +10,10 @@ import BookDetails from './pages/bookdetails/BookDetails';
 import Counter from './components/counter/Counter';
 import { Router } from 'react-router-dom';
 import MyCart from './components/mycart/MyCart';
+import Address from './components/mycart/Address';
+import Order from './components/mycart/Order';
+import OrderPlaced from './components/orderplaced/OrderPlaced';
+import Routers from './pages/router/Router';
 
 
 
@@ -22,11 +26,15 @@ function App() {
 {/* <SignUp/> */}
 {/* <PrimarySearchAppBar/>   */}
   {/* <Book/>   */}
- <HomePage/>    
+ {/* <HomePage/>     */}
   {/* <BookDetails/> */}
   {/* <Counter/> */}
   {/* <Router/> */}
   {/* <MyCart/> */}
+  {/* <Address/> */}
+  {/* <Order/> */}
+  {/* <OrderPlaced/> */}
+  <Routers/>
     </div>
   );
 }

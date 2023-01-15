@@ -7,7 +7,7 @@ import { Box } from '@mui/material';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
-import { addToCartApi, addToWishlistApi, UpdateCartApi} from '../../services/DataService';
+import { addToCartApi, addToWishlistApi, UpdateCartApi } from '../../services/DataService';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -27,6 +27,7 @@ function BookDetails(props) {
         addToCartApi(id)
             .then(res => {
                 console.log(res)
+                
             })
             .catch(error => {
                 console.log(error)
@@ -55,8 +56,8 @@ function BookDetails(props) {
         } else {
             setCount(1);
         }
-        UpdateCartApi(props.id, input).then((response) => {
-            console.log(response);
+        UpdateCartApi(props.id, input).then((res) => {
+            console.log(res);
 
         }).catch((error) => {
             console.log(error);
@@ -69,17 +70,17 @@ function BookDetails(props) {
             quantityToBuy: count + 1,
         }
         setCount(count + 1);
-        UpdateCartApi(props.id, input).then((response) => {
-            console.log(response);
+        UpdateCartApi(props.id, input).then((res) => {
+            console.log(res);
 
         }).catch((error) => {
             console.log(error);
         })
         console.log(input)
     }
-    
 
-  
+
+
 
 
     return (
@@ -93,22 +94,22 @@ function BookDetails(props) {
             <div className='bookdetails-submain'>
                 <img src={book1} alt='' className='bookdetails-img' />
                 <div className='bookdetails-details' >
-                    {
-                        cartToggle ?(
+                     {
+                        cartToggle ? ( 
                             <Box>
-                            <Box style={{}}>
-                                <Box onClick={decrement} style={{marginLeft:'-90px',marginTop:'10px'}}>
-                                    <RemoveCircleOutlinedIcon />
-                                </Box>
-                                <p style={{marginTop:'-25px',marginLeft:'-50px'}}>{count}</p>
-                                <Box onClick={increment} style={{marginTop:'-40px',marginLeft:'-10px'}} >
-                                    <AddCircleOutlinedIcon/>
+                                <Box>
+                                    <Box onClick={()=> decrement(props.id)} style={{ marginLeft: '-90px', marginTop: '10px' }}>
+                                        <RemoveCircleOutlinedIcon />
+                                    </Box>
+                                    <p style={{ marginTop: '-25px', marginLeft: '-50px' }}>{count}</p>
+                                    <Box onClick={()=> increment(props.id)} style={{ marginTop: '-40px', marginLeft: '-10px' }} >
+                                        <AddCircleOutlinedIcon />
+                                    </Box>
                                 </Box>
                             </Box>
-                        </Box>
-                        ) :
+                         ) :
                             <Button variant="contained" style={{ backgroundColor: '#8F2B2F', marginRight: '30px' }} onClick={addCart}>ADD TO CART</Button>
-                    }
+                    } 
                 </div>
                 <div className='bookDetails-wishlist'>
                     {
@@ -120,24 +121,24 @@ function BookDetails(props) {
 
                 </div>
             </div>
-            <div style={{ marginTop: '-20px',alignItems:'flex-start' }}>
-               <div className='bookdetails-align'> 
-               <p style={{ marginBottom: '100px',fontWeight: 'bold', opacity: '1' }}>{props.bookName}</p>
-                <p style={{ marginTop: '-90px',alignItems: 'flex-start', opacity: '1', font: 'normal normal normal 15px/13px Roboto', color: '#333232' }}>by {props.author}</p>
-                <Box style={{ width: '40px', height: '20px', backgroundColor: 'green', alignItems: 'flex-start', marginLeft: '1px', marginTop: '-10px' }}>
-                    <StarOutlineIcon size="small" style={{ marginLeft: '15px', marginTop: '-1px', color: 'white', size: 'small' }} />
-                    <h6 style={{ marginTop: '-25px', marginLeft: '-20px', color: 'white' }}>4.5</h6>
-                    <h6 className='bookdetails-rates'>({props.quantity})</h6>
-                </Box>
-                <h6 className='bookdetails-rate'>Rs.{props.discountPrice}
-                    <Box className='bookdetails-price'>
-                        ({props.price})
+            <div style={{ marginTop: '-20px', alignItems: 'flex-start' }}>
+                <div className='bookdetails-align'>
+                    <p style={{ marginBottom: '100px', fontWeight: 'bold', opacity: '1' }}>{props.bookName}</p>
+                    <p style={{ marginTop: '-90px', alignItems: 'flex-start', opacity: '1', font: 'normal normal normal 15px/13px Roboto', color: '#333232' }}>by {props.author}</p>
+                    <Box style={{ width: '40px', height: '20px', backgroundColor: 'green', alignItems: 'flex-start', marginLeft: '1px', marginTop: '-10px' }}>
+                        <StarOutlineIcon size="small" style={{ marginLeft: '15px', marginTop: '-1px', color: 'white', size: 'small' }} />
+                        <h6 style={{ marginTop: '-25px', marginLeft: '-20px', color: 'white' }}>4.5</h6>
+                        <h6 className='bookdetails-rates'>({props.quantity})</h6>
                     </Box>
-                </h6></div>
+                    <h6 className='bookdetails-rate'>Rs.{props.discountPrice}
+                        <Box className='bookdetails-price'>
+                            ({props.price})
+                        </Box>
+                    </h6></div>
                 <Box className='bookdetails-typography'>
                     <p style={{ marginLeft: '-500px', marginTop: '20px', font: 'normal normal normal 15px/13px Roboto', color: '#333232' }}>Book Detail</p>
                 </Box>
-                <Box style={{ marginTop: '-10px', font: 'normal normal normal 15px/13px Roboto', color: '#333232',marginLeft:'10px' }}>
+                <Box style={{ marginTop: '-10px', font: 'normal normal normal 15px/13px Roboto', color: '#333232', marginLeft: '10px' }}>
                     <h4>Customer Feedback</h4>
                     <Typography component="legend">Overall rating</Typography>
                     <Rating name="no-value" value={null} />
