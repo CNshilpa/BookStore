@@ -31,13 +31,13 @@ export const UpdateCartApi = (data,input) => {
     let response = axios.put(`https://bookstore.incubation.bridgelabz.com/bookstore_user/cart_item_quantity/${data}`,input, headerConfig)
     return response
 } 
-export const putAddress = (id) => {
-    let response = axios.put(`https://bookstore.incubation.bridgelabz.com/bookstore_user/edit_user`, id, headerConfig)
+export const putAddressApi = (data) => {
+    let response = axios.put(`https://bookstore.incubation.bridgelabz.com/bookstore_user/edit_user`, data, headerConfig)
     return response
     
 }
 
-export const addToOrder = (inputobj) => {
+export const addToOrderApi = (inputobj) => {
     let response = axios.post(`https://bookstore.incubation.bridgelabz.com/bookstore_user/add/order`, inputobj, headerConfig)
     return response
   
@@ -47,3 +47,17 @@ export const RemoveBookFromCart = (id) => {
     return response;
     
 }
+
+export const removeWishListItemApi = (id) => {
+    let response = axios.delete(`https://bookstore.incubation.bridgelabz.com/bookstore_user/remove_wishlist_item/${id.cartItem_id}`, headerConfig)
+    return response
+}
+
+export const getWishListApi = () => {
+    let response = axios.get('https://bookstore.incubation.bridgelabz.com/bookstore_user/get_wishlist_items', headerConfig)
+    return response
+}
+
+
+
+

@@ -79,10 +79,6 @@ function BookDetails(props) {
         console.log(input)
     }
 
-
-
-
-
     return (
         <div className='bookdetails-main'>
             <div>
@@ -98,11 +94,11 @@ function BookDetails(props) {
                         cartToggle ? ( 
                             <Box>
                                 <Box>
-                                    <Box onClick={()=> decrement(props.id)} style={{ marginLeft: '-90px', marginTop: '10px' }}>
+                                    <Box onClick={()=> decrement(props.id,props.quantity)} style={{ marginLeft: '-90px', marginTop: '10px' }}>
                                         <RemoveCircleOutlinedIcon />
                                     </Box>
-                                    <p style={{ marginTop: '-25px', marginLeft: '-50px' }}>{count}</p>
-                                    <Box onClick={()=> increment(props.id)} style={{ marginTop: '-40px', marginLeft: '-10px' }} >
+                                    <p style={{ marginTop: '-25px', marginLeft: '-50px' }}>{props.quantity}</p>
+                                    <Box onClick={()=> increment(props.id,props.quantity)} style={{ marginTop: '-40px', marginLeft: '-10px' }} >
                                         <AddCircleOutlinedIcon />
                                     </Box>
                                 </Box>

@@ -14,6 +14,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import { useNavigate } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -144,7 +145,10 @@ export default function PrimarySearchAppBar() {
       
     </Menu>
   );
-
+const navigates = useNavigate()
+  const takeMyCart = ()=>{
+    navigates('/myCart')
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{backgroundColor:'#8F2B2F'}}>
@@ -192,7 +196,7 @@ export default function PrimarySearchAppBar() {
             <IconButton size="large" aria-label="" color="inherit"
             sx={{ mr: 14 }}
             >
-              <Badge>
+              <Badge onClick={takeMyCart}>
                 <ShoppingCartIcon/>
               </Badge>
             </IconButton>

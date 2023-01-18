@@ -1,0 +1,39 @@
+.wish-main {
+    width: 60vw;
+    height: 40vh;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #E4E4E4;
+    opacity: 1;
+    margin-left: 13%;
+    margin-top: 4%;
+}
+
+.wish-img {
+    /* background: transparent url('../../img/component (2).png') 0% 0% no-repeat padding-box; */
+    opacity: 1;
+    margin-left: -83%;
+    margin-top: 5%;
+}
+
+.wish-align {
+    align-items: flex-start;
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    margin-left: 20%;
+    margin-top: -16%;
+    align-items: flex-start;
+    align-content: flex-start;
+    text-align: left;
+}
+
+.wish-price {
+    text-align: left;
+    text-decoration: line-through;
+    font: normal normal normal 12px/16px Roboto;
+    letter-spacing: 0px;
+    color: #9D9D9D;
+    opacity: 1;
+    margin-left: 110%;
+}

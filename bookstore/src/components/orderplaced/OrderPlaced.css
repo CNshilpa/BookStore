@@ -17,8 +17,8 @@
     line-height: 0.001%;
     text-align: center;
     font: normal normal normal 18px/15px Lato;
-    /* margin-left: 36%;
-    margin-top: -1%; */
+    /* margin-left: 36%; */
+    margin-top: -1%; 
 }
 .orders-box{
    display: flex;

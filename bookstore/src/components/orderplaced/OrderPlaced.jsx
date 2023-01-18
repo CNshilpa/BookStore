@@ -4,6 +4,7 @@ import PrimarySearchAppBar from '../header/Header'
 import order from '../../img/unnamed.jpg';
 import './OrderPlaced.css';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../footer/Footer';
 
 function OrderPlaced() {
     
@@ -19,7 +20,7 @@ function OrderPlaced() {
             <PrimarySearchAppBar />
             <Box className='order-one'>
             <Box>
-                <img src={order} alt='' />
+                <img src={order} alt='' style={{height:'190px'}}/>
             </Box>
             <p className='order-param'>
                 <p>hurray!!! your order is confirmed </p>
@@ -48,6 +49,9 @@ function OrderPlaced() {
             <Box>
              <Button variant="contained" onClick={openOrder}  sx={{background:' #3371B5 0% 0% no-repeat padding-box', borderRadius: '3px'}}>Continue Shopping</Button>
              </Box>
+             </Box>
+             <Box style={{marginTop:'-90px'}}>
+                <Footer/>
              </Box>
         </div>
     )

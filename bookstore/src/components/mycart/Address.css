@@ -1,12 +1,12 @@
 .address-box {
-    width: 774px;
+    width: 778px;
     height: 550px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #DCDCDC;
     border-radius: 1px;
     opacity: 1;
     margin-left: 13.4%;
-    margin-top: -3%;
+    margin-top: 1%;
 }
 
 .address-customer {

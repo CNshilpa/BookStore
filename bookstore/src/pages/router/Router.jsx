@@ -2,9 +2,7 @@ import React from 'react'
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import MyCart from '../../components/mycart/MyCart'
 import OrderPlaced from '../../components/orderplaced/OrderPlaced'
-import SignIn from '../../components/signin/signin'
-import SignUp from '../../components/signup/SignUp'
-import BookDetails from '../bookdetails/BookDetails'
+import WishList from '../../components/wishlist/WishList'
 import HomePage from '../home/HomePage'
 import Lander from '../lander/Lander'
 
@@ -17,6 +15,7 @@ function Routers() {
                 <Route path='/homePage' element={<HomePage/>}/> 
                 <Route path='/myCart' element={<MyCart/>}/>  
                 <Route path='/orderPlaced' element={<OrderPlaced/>}/> 
+                <Route path='/wishList' element={<WishList/>}/>  
             </Routes>
         </Router>
     </div>
