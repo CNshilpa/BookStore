@@ -14,6 +14,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useNavigate } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
@@ -56,7 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -79,6 +80,10 @@ export default function PrimarySearchAppBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const searching = (event) => {
+    props.searchInput(event.target.value)
+  }
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -136,7 +141,17 @@ export default function PrimarySearchAppBar() {
         <IconButton size="large" aria-label="" color="inherit"
         sx={{ mr: 14 }}
         >
-          <Badge badgeContent={4} color="error">
+          <Badge  color="error">
+          <FavoriteIcon />
+          </Badge>
+        </IconButton>
+        <p>WishList</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton size="large" aria-label="" color="inherit"
+        sx={{ mr: 14 }}
+        >
+          <Badge  color="error">
             <ShoppingCartIcon />
           </Badge>
         </IconButton>
@@ -148,6 +163,12 @@ export default function PrimarySearchAppBar() {
 const navigates = useNavigate()
   const takeMyCart = ()=>{
     navigates('/myCart')
+  }
+  const takeWishList = ()=>{
+    navigates('/wishList')
+  }
+  const takeHomePage = ()=>{
+    navigates('/homePage')
   }
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -167,6 +188,7 @@ const navigates = useNavigate()
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block'} }}
+            onClick={takeHomePage}
           >
             Bookstore
           </Typography>
@@ -177,6 +199,7 @@ const navigates = useNavigate()
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onChange={searching}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
@@ -189,10 +212,19 @@ const navigates = useNavigate()
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
-              sx={{ mr: 7 }}
+              sx={{ mr: 5 }}
             >
               <PersonOutlineIcon />
             </IconButton>
+
+            <IconButton size="large" aria-label="" color="inherit"
+            sx={{ mr: 4 }}
+            >
+              <Badge onClick={takeWishList}>
+                <FavoriteIcon/>
+              </Badge>
+            </IconButton>
+
             <IconButton size="large" aria-label="" color="inherit"
             sx={{ mr: 14 }}
             >

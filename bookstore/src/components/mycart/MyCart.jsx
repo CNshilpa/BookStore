@@ -121,7 +121,7 @@ function MyCart(props) {
           {booklist.map((book) =>
           (<Box book={book}>
             <Box>
-              <Box style={{ marginRight: '610px', marginTop: '20px', opacity: '1' }}>
+              <Box style={{ marginRight: '610px', opacity: '1',flexDirection:'column'}}>
                 <img src={book1} alt='' className='mycart-img' />
               </Box>
               <Box className='mycart-align'>

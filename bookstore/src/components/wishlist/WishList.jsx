@@ -34,10 +34,12 @@ function WishList() {
         console.log("getting wishlist data")
     }
     console.log(wishList)
+    
 
     useEffect(() => {
         getWishlist()
     }, [])
+    console.log(wishList)
 
     return (
         <div>
@@ -57,8 +59,7 @@ function WishList() {
                         </Box>
                         <Box className='wish-align'>
                             <Box>
-                                <p style={{ fontWeight: 'bold', opacity: '1', marginTop: '-10px' }}>{book.product_id.description
-} </p>
+                                <p style={{ fontWeight: 'bold', opacity: '1', marginTop: '-10px' }}></p>
                                 <p className='wish-author' style={{ opacity: '1', marginTop: '-10px' }} >By </p>
                             </Box>
                             <Box>

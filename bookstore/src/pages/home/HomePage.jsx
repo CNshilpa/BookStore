@@ -13,12 +13,12 @@ import Book from '../books/Book';
 import { getBookApi } from '../../services/DataService';
 import BookDetails from '../bookdetails/BookDetails';
 import { Box } from '@mui/material';
-import Pagination from '../../components/pagination/Pagination';
 import Footer from '../../components/footer/Footer';
+import Paginations from '../../components/pagination/Pagination';
 
 
 function HomePage() {
-    const [headerToggle, setHeaderToggle] = useState(false)
+   
     const [open, setOpen] = React.useState(false);
     const [bookList, setBookList] = useState([])
     const [bookObjToggle, setBookObjToggle] = useState(false)
@@ -28,13 +28,24 @@ function HomePage() {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(4);
 
+    const [searchInput, setSearchInput] = useState('');
+
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = bookList.slice(indexOfFirstPost, indexOfLastPost);
 
-    const paginate = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    }
+
+    const previousPage = () => {
+        if (currentPage !== 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const nextPage = () => {
+        if (currentPage !== Math.ceil(bookPosts.length / postsPerPage)) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
     const listenToTakeBook = (detailsObj) => {
         setBookObjToggle(true)
         console.log(detailsObj)
@@ -50,28 +61,35 @@ function HomePage() {
     const handleClick = () => {
         setOpen(!open);
     }
-    const listenToHeader = () => {
-        setHeaderToggle(!headerToggle)
-    }
 
     useEffect(() => {
         getBookApi()
             .then(res => {
                 console.log(res)
-                setBookList(res.data.result)
+                if (searchInput) {
+                    let filterBook = res.data.result.filter(book => book.bookName.toLowerCase().includes(searchInput.toLocaleLowerCase()))
+                    setBookList(filterBook)
+                }
+                else {
+                    setBookList(res.data.result)
+                }
+
             })
             .catch(error => {
                 console.log(error)
             })
 
-    }, [])
+    }, [searchInput])
     console.log(bookList, 'fetching array')
-    console.log(currentPosts)
 
+
+    const searchBook = (value) => {
+        setSearchInput(value)
+    }
     return (
 
         <div>
-            <PrimarySearchAppBar listenToHeader={listenToHeader} />
+            <PrimarySearchAppBar searchInput={searchBook} />
 
             <span><h3 className='home-books'>Books</h3></span>
             <List
@@ -102,9 +120,36 @@ function HomePage() {
                 </Collapse>
             </List>
 
-            <div style={{ width: '80vw', height: 'auto', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginLeft: '210px', gap: '15px 20px', marginTop: '15px'}}>
+            <div style={{ width: '80vw', height: 'auto', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginLeft: '210px', gap: '15px 20px', marginTop: '15px' }}>
                 {
-                    bookObjToggle ? <BookDetails listenToTakeBookDetails={listenToTakeBookDetails} id={input._id} bookName={input.bookName} author={input.author} quantity={input.quantity} discountPrice={input.discountPrice} price={input.price} description={input.description} /> : currentPosts.map((book) => (<Box onClick={() => listenToTakeBook(book)}><Book key={book._id} book={book} /></Box>))
+                    bookObjToggle ? <BookDetails listenToTakeBookDetails={listenToTakeBookDetails} id={input._id} bookName={input.bookName} author={input.author} quantity={input.quantity} discountPrice={input.discountPrice} price={input.price} description={input.description} />
+                        :
+                        currentPage === 1 ?
+                        bookList.filter((book) => {
+                            if (searchInput === "") {
+                                return book
+                            }
+                            else if (book.bookName.toLowerCase().includes(searchInput.toLowerCase())) {
+                                return book
+                            }
+                        }).slice(0, 4).map(
+                            (book) => (<Box onClick={() => listenToTakeBook(book)}><Book key={book._id} book={book} /></Box>))
+                         :
+                       currentPage === 2 ?
+                       bookList.slice(4, 8).map(
+                                (book) => (<Box onClick={() => listenToTakeBook(book)}><Book key={book._id} book={book} /></Box>))
+                             :
+                         currentPage === 3 ?
+                            bookList.slice(8, 12).map(
+                                    (book) => (<Box onClick={() => listenToTakeBook(book)}><Book key={book._id} book={book} /></Box>))
+                                 :
+                              currentPage === 4 ?
+                                bookList.slice(12, 16).map(
+                                        (book) => (<Box onClick={() => listenToTakeBook(book)}><Book key={book._id} book={book} /></Box>))
+                                     :
+                                    null
+
+                       
 
                 }
 
@@ -112,17 +157,20 @@ function HomePage() {
             </div>
 
             {bookPosts ? null :
-                (<Box style={{marginTop:'50px'}}>
-                    <Pagination
-                        totalPosts={bookList.length}
+                (<Box style={{ marginTop: '50px' }}>
+                    <Paginations
                         postsPerPage={postsPerPage}
-                        paginate={paginate}
-                        currentPosts={currentPosts} />
+                        totalPosts={bookList.length}
+                        previousPage={previousPage}
+                        nextPage={nextPage}
+                        setCurrentPage={setCurrentPage}
+                        currentPosts={currentPosts}
+                        onChange={(e, value) => currentPosts(value)} />
                 </Box>)
             }
 
             <Box>
-                <Footer/>
+                <Footer />
             </Box>
         </div>
     )

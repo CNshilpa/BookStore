@@ -1,6 +1,6 @@
 .wish-main {
     width: 60vw;
-    height: 40vh;
+    height: auto;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #E4E4E4;
     opacity: 1;
@@ -13,6 +13,8 @@
     opacity: 1;
     margin-left: -83%;
     margin-top: 5%;
+    justify-content: space-evenly;
+    flex-direction: column;
 }
 
 .wish-align {

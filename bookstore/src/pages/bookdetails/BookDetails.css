@@ -68,13 +68,13 @@
 }
 
 .bookdetails-typography {
-    width: 250%;
-    height: 25%;
+    width: 490%;
+    height: 100px;
     margin-top: -15%;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #E2E2E2;
     border-radius: 3px;
-    margin-left: 7%;
+    margin-left: 3%;
     overflow-y: scroll;
 }
 

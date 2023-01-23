@@ -1,25 +1,33 @@
 import { Button } from '@mui/material';
 import React from 'react'
 
-const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+const Paginations = ({ postsPerPage, totalPosts, currentPage, previousPage, nextPage, setCurrentPage }) => {
     const pageNumbers = [];
 
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
         pageNumbers.push(i);
     }
     return (
-        <div >
-            <ul >
-                {pageNumbers.map((number) => (
-                    <Button showFirstButton showLastButton
-                        key={number}
-                        onClick={() => paginate(number)}
-                    >
-                        {number}
+        <div className='pagination'>
+
+<Button onClick={previousPage} className="page-number">
+               Prev
+            </Button>
+            {pageNumbers.map((page, index) => {
+                return (
+                    <Button
+                        key={index}
+                        onClick={() => setCurrentPage(page)}
+                        className={page === currentPage ? "active" : ""}>
+                        {page}
                     </Button>
-                ))}
-            </ul>
+                );
+            })}
+            <Button onClick={nextPage} className="page-number">
+               Next
+            </Button>
+
         </div>
     )
 }
-export default Pagination
+export default Paginations

@@ -110,7 +110,11 @@
 
 .mycart-img {
     background: transparent url('../../img/component\ \(2\).png') 0% 0% no-repeat padding-box;
-
+/* flex-direction: column;
+justify-content: space-evenly; */
+margin-top: 3%;
+column-gap: 5px;
+flex-wrap: wrap;
 }
 
 .mycart-address {

@@ -47,36 +47,38 @@ function BookDetails(props) {
                 console.log(error)
             })
     }
-    const decrement = () => {
+
+    const decrementQuantity = () => {
         let input = {
-            quantityToBuy: count - 1,
+            quantityToBuy: count-1,
         }
-        if (count > 1) {
-            setCount(count - 1);
+        if (count > 1){
+            setCount(count-1);
         } else {
-            setCount(1);
+                setCount(1);
         }
-        UpdateCartApi(props.id, input).then((res) => {
-            console.log(res);
-
-        }).catch((error) => {
+        UpdateCartApi(props.id, input).then((response) =>{
+            console.log(response);
+            
+        }).catch((error) =>{
             console.log(error);
         })
-        console.log(input)
+        console.log(input,"Input")
     }
-    const increment = () => {
-
+    
+      const incrementQuantity = () => {
+    
         let input = {
-            quantityToBuy: count + 1,
+            quantityToBuy: count+1,
         }
-        setCount(count + 1);
-        UpdateCartApi(props.id, input).then((res) => {
-            console.log(res);
-
-        }).catch((error) => {
+        setCount(count+1);
+       UpdateCartApi(props.id,input).then((response) =>{
+            console.log(response);
+            
+        }).catch((error) =>{
             console.log(error);
         })
-        console.log(input)
+        console.log(input,"Input")
     }
 
     return (
@@ -94,24 +96,24 @@ function BookDetails(props) {
                         cartToggle ? ( 
                             <Box>
                                 <Box>
-                                    <Box onClick={()=> decrement(props.id,props.quantity)} style={{ marginLeft: '-90px', marginTop: '10px' }}>
+                                    <Box  onClick={()=>decrementQuantity(props._id)} style={{ marginLeft: '-90px', marginTop: '10px' }}>
                                         <RemoveCircleOutlinedIcon />
                                     </Box>
-                                    <p style={{ marginTop: '-25px', marginLeft: '-50px' }}>{props.quantity}</p>
-                                    <Box onClick={()=> increment(props.id,props.quantity)} style={{ marginTop: '-40px', marginLeft: '-10px' }} >
+                                    <p style={{ marginTop: '-25px', marginLeft: '-50px' }}>{count}</p>
+                                    <Box onClick={()=>incrementQuantity(props._id)} style={{ marginTop: '-40px', marginLeft: '-10px' }} >
                                         <AddCircleOutlinedIcon />
                                     </Box>
                                 </Box>
                             </Box>
-                         ) :
-                            <Button variant="contained" style={{ backgroundColor: '#8F2B2F', marginRight: '30px' }} onClick={addCart}>ADD TO CART</Button>
-                    } 
+                          ) :
+                             <Button variant="contained" style={{ backgroundColor: '#8F2B2F', marginRight: '30px' }} onClick={addCart}>ADD TO CART</Button>
+                     }  
                 </div>
                 <div className='bookDetails-wishlist'>
                     {
                         wishListToggle ? <Button variant="contained" className='addIcon' startIcon={<FavoriteIcon sx={{ color: 'red' }} />} style={{ backgroundColor: '#373434' }}></Button>
                             :
-                            <Button onClick={addWishList} variant="contained" className='addIcon' startIcon={<FavoriteIcon />} style={{ backgroundColor: '#373434' }}>WISHLIST</Button>
+                            <Button onClick={addWishList} variant="contained" className='addIcon'  style={{ backgroundColor: '#373434' }} startIcon={<FavoriteIcon sx={{ color: 'red' }} />} >WISHLIST</Button>
 
                     }
 
@@ -130,9 +132,9 @@ function BookDetails(props) {
                         <Box className='bookdetails-price'>
                             ({props.price})
                         </Box>
-                    </h6></div>
+                    </h6>
                 <Box className='bookdetails-typography'>
-                    <p style={{ marginLeft: '-500px', marginTop: '20px', font: 'normal normal normal 15px/13px Roboto', color: '#333232' }}>Book Detail</p>
+                    <p style={{ marginLeft: '-550px', marginTop: '20px', font: 'normal normal normal 15px/13px Roboto', color: '#333232' }}>Book Detail</p>
                 </Box>
                 <Box style={{ marginTop: '-10px', font: 'normal normal normal 15px/13px Roboto', color: '#333232', marginLeft: '10px' }}>
                     <h4>Customer Feedback</h4>
@@ -142,6 +144,7 @@ function BookDetails(props) {
                 {/* <Box>
                     <Button variant="contained" style={{ marginTop: '20px', left: '600px', font: 'normal normal normal 14px/19px Roboto;', color: '#FFFFFF', textAlign: 'left', textTransform: 'capitalize' }} onClick={''}>Submit</Button>
                 </Box> */}
+                </div>
             </div>
 
         </div>

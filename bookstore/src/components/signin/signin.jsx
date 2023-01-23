@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import { TextField } from '@mui/material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { loginApi } from '../../services/UserService';
+import { useNavigate } from 'react-router-dom';
 
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
@@ -34,6 +35,7 @@ function SignIn(props) {
         props.listenToSignup()
 
     }
+    const navigate = useNavigate()
     const login = () => {
         console.log("submit", signInObj)
         let emailText = emailRegex.test(signInObj.email)
@@ -53,10 +55,10 @@ function SignIn(props) {
         }
 
         if (emailText === true && passwordText === true) {
-           loginApi(signInObj).then((response) => {
+            loginApi(signInObj).then((response) => {
                 console.log(response);
                 localStorage.setItem('token', response.data.result.accessToken);
-
+                navigate('/homePage')
             })
                 .catch((error) => { console.log(error) })
 
