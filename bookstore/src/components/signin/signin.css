@@ -97,3 +97,43 @@ margin-top: 2%;
 
 
 }
+
+@media only screen and (min-width:320px) and (max-width:480px) {
+    .signin-main
+    {
+        width: 99%;
+        height: 75%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        background-color: #9e9e9e;
+        margin-left: -35%;
+    }
+  }
+  @media only screen and (min-width:481px) and (max-width:768px) {
+    .signin-main
+    {
+        width: 99%;
+        height: 65%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        background-color: #9e9e9e;
+        margin-left: -35%;
+    }
+  }
+  @media only screen and (min-width:769px) and (max-width:1024px) {
+    .signin-main
+    {
+        width: 99%;
+        height: 75%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        background-color: #9e9e9e;
+        margin-left: -35%;
+    }
+  }

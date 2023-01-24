@@ -15,7 +15,7 @@ import './MyCart.css';
 import { TextField } from '@mui/material';
 import Address from './Address';
 import Order from './Order';
-import { cartItemListApi, RemoveBookFromCart, UpdateCartApi } from '../../services/DataService';
+import { cartItemListApi, RemoveBookFromCart, removeWishListItemApi, UpdateCartApi } from '../../services/DataService';
 
 function MyCart(props) {
 
@@ -103,6 +103,12 @@ function MyCart(props) {
   useEffect(() => {
     getCart()
   }, [])
+
+  const autoRefresh = ()=>{
+    incrementQuantity()
+    decrementQuantity()
+    removeBook()
+  }
   return (
 
     <Paper elevation={0}>
@@ -134,16 +140,16 @@ function MyCart(props) {
                   </Box>
                   <Box >
                     <div  >
-                      <div>
+                      <div autorefresh={autoRefresh}>
                         <Box size="small" color="#DBDBDB" aria-label="add" sx={{ width: '30px', height: '20px', marginTop: '20px', marginLeft: '1px', color: 'black' }}  >
                           <RemoveCircleOutlinedIcon onClick={() => decrementQuantity(book._id, book.quantityToBuy)} />
                         </Box>
-                        <Box className='mycart-box'>{book.quantityToBuy}</Box>
+                        <Box className='mycart-box' >{book.quantityToBuy} </Box>
                         <Box size="small" color="#DBDBDB" aria-label="substract" sx={{ width: '30px', height: '20px', marginTop: '-45px', marginLeft: '65px', color: 'black' }} >
                           <AddCircleOutlinedIcon onClick={() => incrementQuantity(book._id, book.quantityToBuy)} />
                         </Box>
                         <Box>
-                          <Button style={{ marginLeft: '100px', marginTop: '-45px' }} onClick={() => removeBook(book._id)}>Remove</Button>
+                          <Button style={{ marginLeft: '100px', marginTop: '-45px' }} onClick={() => removeBook(book._id)} >Remove</Button>
                         </Box>
                       </div>
                     </div>

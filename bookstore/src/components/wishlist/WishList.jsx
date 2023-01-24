@@ -67,7 +67,7 @@ function WishList() {
                                 <p className='wish-price' style={{ opacity: '1', marginTop: '-33px' }}>Rs.</p>
                             </Box>
                         </Box>
-                        <Box>
+                        <Box className='remove'>
                             <Button onClick={() => removeBooks(book.product_id._id)}>
                                 <DeleteIcon sx={{ color: '#9D9D9D', marginLeft: '700px', marginTop: '-170px' }} />
                             </Button>

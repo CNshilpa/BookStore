@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useReducer, useState} from 'react'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { Button } from '@mui/material';
@@ -6,24 +6,23 @@ import './Counter.css';
 
 
 function Counter(props) {
-  const [count, setCount] = useState(0)
-
-  const handleClick2 = () =>{
-    if (count > 0){
-      setCount(count-1);
-  } else {
-      setCount(0);
-  }
-}
- 
-    const handleClick1 = () =>{  
-      setCount(count+1);
+  const initialState = 1
+const reducer = (state, action) => {
+    switch (action) {
+        case 'increment':
+            return state + 1
+        case 'decrement':
+            return state - 1
+        default:
+            return state
     }
+}
+const [count, dispatch] = useReducer(reducer, initialState)
   
 return (
 <div>
    
-    <Button><RemoveCircleOutlineIcon  onClick={handleClick2}/> {count} <AddCircleOutlineIcon onClick={handleClick1}/></Button>
+    <Button><RemoveCircleOutlineIcon  onClick={() => dispatch('decrement')} color="action"/> {count} <AddCircleOutlineIcon color="action"  onClick={() => dispatch('increment')}/></Button>
 
 </div>
   )

@@ -86,9 +86,13 @@ function HomePage() {
     const searchBook = (value) => {
         setSearchInput(value)
     }
+
+    const autoRefresh =()=>{
+        getBookApi()
+    }
     return (
 
-        <div>
+        <div >
             <PrimarySearchAppBar searchInput={searchBook} />
 
             <span><h3 className='home-books'>Books</h3></span>
@@ -120,7 +124,7 @@ function HomePage() {
                 </Collapse>
             </List>
 
-            <div style={{ width: '80vw', height: 'auto', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginLeft: '210px', gap: '15px 20px', marginTop: '15px' }}>
+            <div className='book' style={{ width: '80vw', height: 'auto', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginLeft: '210px', gap: '15px 20px', marginTop: '15px' }}>
                 {
                     bookObjToggle ? <BookDetails listenToTakeBookDetails={listenToTakeBookDetails} id={input._id} bookName={input.bookName} author={input.author} quantity={input.quantity} discountPrice={input.discountPrice} price={input.price} description={input.description} />
                         :
@@ -133,19 +137,19 @@ function HomePage() {
                                 return book
                             }
                         }).slice(0, 4).map(
-                            (book) => (<Box onClick={() => listenToTakeBook(book)}><Book key={book._id} book={book} /></Box>))
+                            (book) => (<Box onClick={() => listenToTakeBook(book)}><Book key={book._id} book={book} autorefresh={autoRefresh} /></Box>))
                          :
                        currentPage === 2 ?
                        bookList.slice(4, 8).map(
-                                (book) => (<Box onClick={() => listenToTakeBook(book)}><Book key={book._id} book={book} /></Box>))
+                                (book) => (<Box onClick={() => listenToTakeBook(book)}><Book key={book._id} book={book} autorefresh={autoRefresh}/></Box>))
                              :
                          currentPage === 3 ?
                             bookList.slice(8, 12).map(
-                                    (book) => (<Box onClick={() => listenToTakeBook(book)}><Book key={book._id} book={book} /></Box>))
+                                    (book) => (<Box onClick={() => listenToTakeBook(book)}><Book key={book._id} book={book} autorefresh={autoRefresh}/></Box>))
                                  :
                               currentPage === 4 ?
                                 bookList.slice(12, 16).map(
-                                        (book) => (<Box onClick={() => listenToTakeBook(book)}><Book key={book._id} book={book} /></Box>))
+                                        (book) => (<Box onClick={() => listenToTakeBook(book)}><Book key={book._id} book={book} autorefresh={autoRefresh}/></Box>))
                                      :
                                     null
 
@@ -157,7 +161,7 @@ function HomePage() {
             </div>
 
             {bookPosts ? null :
-                (<Box style={{ marginTop: '50px' }}>
+                (<Box style={{ marginTop: '50px' }} className='pagination'>
                     <Paginations
                         postsPerPage={postsPerPage}
                         totalPosts={bookList.length}
@@ -169,7 +173,7 @@ function HomePage() {
                 </Box>)
             }
 
-            <Box>
+            <Box className='footer'>
                 <Footer />
             </Box>
         </div>

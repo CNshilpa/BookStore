@@ -48,6 +48,7 @@ function SignUp(props) {
         props.listenToSignin()
       
     }
+    
 const signUp = () =>{
     console.log("submit",signUpObj)
       let NameText = fullNameRegex.test(signUpObj.fullName)
@@ -89,8 +90,9 @@ const signUp = () =>{
       if(NameText === true && emailText === true && passwordText === true && phoneText === true)
       {
           registerApi(signUpObj).then((response) =>{console.log(response)}).catch((error) => {console.log(error)})
-
+          
       }
+      
 }
     
     return (
